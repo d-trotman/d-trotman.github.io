@@ -12,6 +12,11 @@
         <div class="container">
             <nav>
                 <div class="logo">DAWSON TROTMAN</div>
+                <div class="mobile-menu-button">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="music.html">Music</a></li>
@@ -95,29 +100,6 @@
         </div>
     </section>
 
-    <section class="map-section">
-        <div class="container">
-            <div class="map-container">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976093303492!3d40.69766374873451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1712417057212!5m2!1sen!2sus" 
-                    width="100%" 
-                    height="400" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-                <div class="map-overlay">
-                    <div class="map-card">
-                        <h3>Find Me In NYC</h3>
-                        <p>I'm based in New York City, working on research and musical projects throughout the area.</p>
-                        <p>Feel free to reach out if you'd like to meet up to discuss potential collaborations.</p>
-                        <a href="https://maps.app.goo.gl/VJ2HAK4EteWJcjbD9" class="btn" target="_blank">Get Directions</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section class="schedule-section">
         <div class="container">
@@ -214,6 +196,12 @@
             } else {
                 header.classList.remove('scrolled');
             }
+        });
+        
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('show');
+            this.classList.toggle('active');
         });
         
         // Form submission handling (this would need to be connected to a backend in a real implementation)
