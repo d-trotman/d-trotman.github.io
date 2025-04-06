@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dawson Trotman | Biologist & Musician</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --dark-bg: #1a1a1a;
@@ -293,7 +294,8 @@
         
         .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
         
         .social-links a {
@@ -305,11 +307,15 @@
             background-color: #333;
             border-radius: 50%;
             transition: all 0.3s ease;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.2rem;
         }
         
         .social-links a:hover {
             background-color: var(--accent-blue);
             transform: translateY(-5px);
+            color: white;
         }
         
         .copyright {
@@ -439,23 +445,22 @@
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>
-                        <li>Email: your.email@example.com</li>
-                        <li>University Department</li>
-                        <li>City, Country</li>
+                        <li>Email: dawsontrotman02@gmail.com</li>
+                        <li>New York City</li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Connect</h3>
                     <div class="social-links">
-                        <a href="#"><span>TW</span></a>
-                        <a href="#"><span>IG</span></a>
-                        <a href="#"><span>YT</span></a>
-                        <a href="#"><span>SC</span></a>
+                        <a href="https://www.linkedin.com/in/dawson-trotman-9115b6313/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/d-trotman" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="mailto:dawsontrotman02@gmail.com" aria-label="Email"><i class="far fa-envelope"></i></a>
+                        <a href="https://www.instagram.com/dawsontrotman" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Your Name. All rights reserved.</p>
+                <p>&copy; 2025 Dawson Trotman. All rights reserved.</p>
             </div>
         </div>
     </footer>
