@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music | Dawson Trotman | Biologist & Musician</title>
+    <style>
+        :root {
+            --dark-bg: #1a1a1a;
+            --earth-brown: #3a2c1d;
+            --leaf-green: #4a7c59;
+            --deep-blue: #27496d;
+            --accent-green: #66c2a5;
+            --accent-blue: #5da9e9;
+            --text-color: #f5f5f5;
+            --secondary-text: #bdbdbd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--earth-brown), var(--dark-bg));
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+        
+        header.scrolled {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .nav-links a.active {
+            color: var(--accent-green);
+            border-bottom: 2px solid var(--accent-green);
+            padding-bottom: 3px;
+        }
+        
+        .page-header {
+            padding-top: 120px;
+            padding-bottom: 50px;
+            background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.9)), 
+                        url('/api/placeholder/1200/400') no-repeat center center/cover;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+        
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--secondary-text);
+            font-size: 1.2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--leaf-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-green);
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--secondary-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .featured-video {
+            background-color: var(--earth-brown);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .play-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .play-button::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 25px solid white;
+            margin-left: 5px;
+        }
+        
+        .video-details {
+            padding: 2rem;
+        }
+        
+        .video-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+        
+        .video-details p {
+            color: var(--secondary-text);
+            margin-bottom: 1.5rem;
+        }
+        
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .music-item {
+            background-color: #222;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .music-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .music-item-img {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .music-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .music-item:hover .music-item-img img {
+            transform: scale(1.1);
+        }
+        
+        .music-item-content {
+            padding: 1.5rem;
+        }
+        
+        .music-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-blue);
+        }
+        
+        .music-item p {
+            color: var(--secondary-text);
+            margin-bottom: 1rem;
+        }
+        
+        .music-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--deep-blue);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+        
+        .button-group {
+            display: flex;
+        }
+        
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .about-music {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-music-img {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .about-music-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-music-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-green);
+        }
+        
+        .about-music-content p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-text);
+        }
+        
+        footer {
+            background-color: var(--earth-brown);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-green);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-blue);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: var(--secondary-text);
+        }
+        
+        @media (max-width: 968px) {
+            .about-music {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">YOURNAME</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="music.html" class="active">Music</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Music Compositions</h1>
+            <p>Exploring the rhythms of nature through sound, creating musical pieces inspired by biological patterns and ecological processes.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Composition</h2>
+                <p>My latest work exploring the connection between botanical growth patterns and musical structure.</p>
+            </div>
+            
+            <div class="featured-video">
+                <div class="video-container">
+                    <img src="/api/placeholder/1200/675" alt="Featured Video Thumbnail">
+                    <div class="play-button"></div>
+                </div>
+                <div class="video-details">
+                    <h3>"Symbiosis: A Botanical Symphony"</h3>
+                    <p>This composition translates the growth patterns of mycorrhizal networks into melodic structures, creating an auditory representation of the complex relationships between fungi and plant roots. The piece evolves gradually, mirroring the slow, deliberate growth of underground networks that connect entire forests.</p>
+                    <div class="music-meta">
+                        <span>Released: March 2025</span>
+                        <span>Duration: 8:42</span>
+                    </div>
+                    <div>
+                        <span class="tag">Classical</span>
+                        <span class="tag">Experimental</span>
+                        <span class="tag">Bioacoustics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background-color: #222;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Music Catalog</h2>
+                <p>A collection of compositions exploring the intersection of biology and music.</p>
+            </div>
+            
+            <div class="music-grid">
+                <div class="music-item">
+                    <div class="music-item-img">
+                        <img src="/api/placeholder/400/200" alt="Music Thumbnail">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="music-item-content">
+                        <h3>"Photosynthesis"</h3>
+                        <p>A musical interpretation of the light-dependent reactions in plant cells.</p>
+                        <div class="music-meta">
+                            <span>Duration: 5:27</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="#" class="btn btn-small">Listen</a>
+                            <a href="#" class="btn btn-small btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="music-item">
+                    <div class="music-item-img">
+                        <img src="/api/placeholder/400/200" alt="Music Thumbnail">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="music-item-content">
+                        <h3>"Migration Patterns"</h3>
+                        <p>Inspired by the seasonal journeys of migratory birds across continents.</p>
+                        <div class="music-meta">
+                            <span>Duration: 7:12</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="#" class="btn btn-small">Listen</a>
+                            <a href="#" class="btn btn-small btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="music-item">
+                    <div class="music-item-img">
+                        <img src="/api/placeholder/400/200" alt="Music Thumbnail">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="music-item-content">
+                        <h3>"Coral Reef Nocturne"</h3>
+                        <p>A sonic journey through the nocturnal activities of a coral reef ecosystem.</p>
+                        <div class="music-meta">
+                            <span>Duration: 6:55</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="#" class="btn btn-small">Listen</a>
+                            <a href="#" class="btn btn-small btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="music-item">
+                    <div class="music-item-img">
+                        <img src="/api/placeholder/400/200" alt="Music Thumbnail">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="music-item-content">
+                        <h3>"Cellular Division"</h3>
+                        <p>Translating the process of mitosis into rhythmic and melodic patterns.</p>
+                        <div class="music-meta">
+                            <span>Duration: 4:33</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="#" class="btn btn-small">Listen</a>
+                            <a href="#" class="btn btn-small btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="music-item">
+                    <div class="music-item-img">
+                        <img src="/api/placeholder/400/200" alt="Music Thumbnail">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="music-item-content">
+                        <h3>"Forest Canopy"</h3>
+                        <p>The soundscape of stratified forest layers and their interactions.</p>
+                        <div class="music-meta">
+                            <span>Duration: 8:04</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="#" class="btn btn-small">Listen</a>
+                            <a href="#" class="btn btn-small btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="music-item">
+                    <div class="music-item-img">
+                        <img src="/api/placeholder/400/200" alt="Music Thumbnail">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="music-item-content">
+                        <h3>"Bioluminescence"</h3>
+                        <p>Exploring the rhythmic patterns of deep-sea bioluminescent organisms.</p>
+                        <div class="music-meta">
+                            <span>Duration: 6:18</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="#" class="btn btn-small">Listen</a>
+                            <a href="#" class="btn btn-small btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="about-music">
+                <div class="about-music-img">
+                    <img src="/api/placeholder/600/400" alt="Musician at work">
+                </div>
+                <div class="about-music-content">
+                    <h2>My Musical Approach</h2>
+                    <p>As both a biologist and musician, my work exists at the intersection of science and art. I use music as a medium to translate complex biological processes and patterns into auditory experiences that can be intuitively understood.</p>
+                    <p>My compositions often begin with field recordings or data collected during research, which are then transformed into musical elements using various techniques including sonification, algorithmic composition, and traditional orchestration.</p>
+                    <p>The goal of my musical work is not just artistic expression, but also to create new ways of understanding and connecting with natural phenomena that might otherwise remain abstract or invisible.</p>
+                    <a href="#" class="btn">Read Artist Statement</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>About Me</h3>
+                    <p>A biologist and musician dedicated to understanding the natural world through both scientific inquiry and artistic expression.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="music.html">Music</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>Email: your.email@example.com</li>
+                        <li>University Department</li>
+                        <li>City, Country</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><span>TW</span></a>
+                        <a href="#"><span>IG</span></a>
+                        <a href="#"><span>YT</span></a>
+                        <a href="#"><span>SC</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Your Name. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Add click event to play buttons (in a real site, this would play the videos)
+        document.querySelectorAll('.play-button').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Video would play here in the actual implementation.');
+            });
+        });
+    </script>
+</body>
+</html>
