@@ -298,6 +298,25 @@ nav {
     margin-bottom: 4rem;
 }
 
+/* Specific styles for the featured video container */
+.featured-video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.featured-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Regular video containers for catalog items */
 .video-container {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -312,6 +331,16 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* New style for YouTube iframes */
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 .play-button {
@@ -360,6 +389,28 @@ nav {
     margin-bottom: 1.5rem;
 }
 
+/* Media query to adjust featured video size on different screens */
+@media (min-width: 768px) {
+    .featured-video {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+    
+    .featured-video-container {
+        height: 100%;
+        padding-bottom: 0;
+    }
+    
+    .featured-video-container iframe {
+        position: absolute;
+        height: 100%;
+    }
+    
+    .video-details {
+        padding: 2rem;
+    }
+}
+
 /* Music Grid (Music Page) */
 .music-grid {
     display: grid;
@@ -381,7 +432,8 @@ nav {
 
 .music-item-img {
     position: relative;
-    height: 200px;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
     overflow: hidden;
 }
 
@@ -390,6 +442,19 @@ nav {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* New style for YouTube iframes in music grid */
+.music-item-img iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 .music-item:hover .music-item-img img {
