@@ -152,6 +152,42 @@
             color: white;
         }
         
+        .about-section {
+            padding: 6rem 0;
+            background-color: var(--dark-bg);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-green);
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-text);
+        }
+        
         .featured-section {
             padding: 6rem 0;
             background-color: #222;
@@ -283,6 +319,18 @@
             color: var(--secondary-text);
         }
         
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-image {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+        
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -298,7 +346,7 @@
     <header id="header">
         <div class="container">
             <nav>
-                <div class="logo">Dawson Trotman</div>
+                <div class="logo">YOURNAME</div>
                 <ul class="nav-links">
                     <li><a href="#" class="active">Home</a></li>
                     <li><a href="music.html">Music</a></li>
@@ -316,6 +364,23 @@
                 <p>Exploring the intricate patterns of nature through scientific research and musical composition. Discover the harmony between the natural world and artistic expression.</p>
                 <a href="research.html" class="btn">View Research</a>
                 <a href="music.html" class="btn btn-outline">Listen to Music</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="photo/home.png" alt="Profile Photo">
+                </div>
+                <div class="about-content">
+                    <h2>About Me</h2>
+                    <p>I am a biologist and musician dedicated to exploring the fascinating intersection between scientific inquiry and artistic expression. My research focuses on understanding complex biological systems and translating these patterns into musical compositions.</p>
+                    <p>With a background in both laboratory research and musical composition, I bring a unique perspective to my work that bridges the gap between these seemingly disparate fields. I believe that the patterns found in nature can inspire not only scientific discovery but also meaningful artistic creation.</p>
+                    <p>Through my website, I invite you to explore both aspects of my professional life – from my latest research publications to my musical compositions inspired by natural phenomena.</p>
+                    <a href="contact.html" class="btn">Get In Touch</a>
+                </div>
             </div>
         </div>
     </section>
