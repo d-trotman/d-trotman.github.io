@@ -419,6 +419,19 @@ nav {
     text-align: center;
 }
 
+/* Audio player styling */
+.audio-player {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.audio-player audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: var(--earth-brown);
+}
+
 /* Music Grid (Music Page) */
 .music-grid {
     display: grid;
