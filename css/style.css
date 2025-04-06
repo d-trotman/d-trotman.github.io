@@ -411,6 +411,14 @@ nav {
     }
 }
 
+/* Section titles for catalog categories */
+.catalog-section-title {
+    font-size: 1.8rem;
+    color: var(--accent-green);
+    margin: 2.5rem 0 1.5rem;
+    text-align: center;
+}
+
 /* Music Grid (Music Page) */
 .music-grid {
     display: grid;
