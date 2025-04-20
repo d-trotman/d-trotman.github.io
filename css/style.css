@@ -1146,3 +1146,35 @@ footer {
         max-height: 280px;
     }
 }
+
+/* Add to your existing style.css file */
+
+/* Fix for header overlapping with hero image on mobile */
+.hero {
+    padding-top: 80px; /* Adjust this value based on your header height */
+}
+
+/* Make sure the header doesn't overlap content when fixed */
+#header {
+    position: fixed; /* If it's not already fixed */
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 70px; /* You might need a different value for mobile */
+    }
+    
+    .hero-grid {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .hero-image img {
+        width: 100%;
+        margin-top: 15px;
+    }
+}
