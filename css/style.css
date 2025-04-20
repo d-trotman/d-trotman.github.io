@@ -1147,16 +1147,16 @@ footer {
     }
 }
 
-/* Add to your existing style.css file */
+/* Last section of your style.css file - replace the current fix with this */
 
 /* Fix for header overlapping with hero image on mobile */
 .hero {
-    padding-top: 80px; /* Adjust this value based on your header height */
+    padding-top: 120px; /* Increased from 80px for more space */
 }
 
 /* Make sure the header doesn't overlap content when fixed */
 #header {
-    position: fixed; /* If it's not already fixed */
+    position: fixed;
     width: 100%;
     z-index: 1000;
     top: 0;
@@ -1165,7 +1165,7 @@ footer {
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .hero {
-        padding-top: 70px; /* You might need a different value for mobile */
+        padding-top: 100px; /* Increased from 70px for more space */
     }
     
     .hero-grid {
@@ -1176,5 +1176,12 @@ footer {
     .hero-image img {
         width: 100%;
         margin-top: 15px;
+    }
+}
+
+/* Additional fix for very small screens */
+@media (max-width: 480px) {
+    .hero {
+        padding-top: 110px; /* Even more padding for the smallest screens */
     }
 }

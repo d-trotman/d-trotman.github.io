@@ -139,14 +139,7 @@
             document.querySelector('.nav-links').classList.toggle('show');
             this.classList.toggle('active');
         });
-    </script>
-    .hero {
-        padding-top: 0; /* Reset padding */
-        margin-top: 0;
-    }
-    
-    /* Add this JavaScript to the bottom of your HTML file, before the closing </body> tag */
-    <script>
+        
         // Adjust hero section based on actual header height
         window.addEventListener('load', adjustHeroSection);
         window.addEventListener('resize', adjustHeroSection);
@@ -156,7 +149,7 @@
             const hero = document.querySelector('.hero');
             if (header && hero) {
                 const headerHeight = header.offsetHeight;
-                hero.style.paddingTop = (headerHeight + 10) + 'px'; // Add 10px extra space
+                hero.style.paddingTop = (headerHeight + 30) + 'px'; // Increased to 30px extra space
             }
         }
     </script>
